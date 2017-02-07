@@ -1,11 +1,13 @@
 {
-    "name": "micalevisk-telegrambot",
-    "version": "0.0.1",
-    "description": "My simple Telegram Bot with NodeJS & Heroku (with Codeship)",
-    "main": "index.js",
-    "author": "Micael Levi",
-    "license": "ISC",
-    "dependencies": {
-        "node-telegram-bot-api": "^0.26.0"
-    }
+  "name": "micalevisk-telegrambot",
+  "version": "0.0.1",
+  "description": "My simple Telegram Bot with NodeJS & Heroku (with Codeship)",
+  "main": "index.js",
+  "author": "Micael Levi",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "*",
+    "express": "3.x",
+    "node-telegram-bot-api": "^0.26.0"
+  }
 }
