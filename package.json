@@ -1,7 +1,7 @@
 {
     "name": "micalevisk-telegrambot",
     "version": "0.0.1",
-    "description": "My simple Telegram Bot with NodeJS & Heroku",
+    "description": "My simple Telegram Bot with NodeJS & Heroku (with Codeship)",
     "main": "main.js",
     "author": "Micael Levi",
     "license": "ISC",
