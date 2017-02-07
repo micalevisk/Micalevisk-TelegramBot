@@ -1,3 +1,3 @@
+node_modules/**/*
 INFO_HEROKU.txt
 settings.json
-node_modules/*

@@ -5,8 +5,8 @@ var fs = require('fs');
 const settings = JSON.parse( fs.readFileSync("settings.json") )
 var TelegramBot = require('node-telegram-bot-api');
 
-module.exports = function ()
-{
+var bot = function () {
+	console.log(">>","BOT INICIADO");
 
 	const BOT_TOKEN = settings.BOT_TOKEN;
 
@@ -16,11 +16,12 @@ module.exports = function ()
 	/// Matches "/echo <text>"
 	bot.onText(/\/echo (.+)/i, function (msg, match) {
 		/// 'msg' is the received Message from Telegram 'match' is the result of executing the regexp above on the text content of the message
-		var chatId = msg.chat.id;
+		var chatId = msg.chat.id; /// msg.chat = { id, first_name, last_name, username, type }
 		var resp = match[1];
 
 		bot.sendMessage(chatId, resp);
 	});
 
+}();
 
-}
+module.exports = bot;
