@@ -1,0 +1,11 @@
+{
+    "name": "Micalevisk Telegram Bot",
+    "version": "0.0.1",
+    "description": "My simple Telegram Bot with NodeJS & Heroku",
+    "main": "index.js",
+    "author": "Micael Levi",
+    "license": "ISC",
+    "dependencies": {
+        "node-telegram-bot-api": "^0.26.0"
+    }
+}
