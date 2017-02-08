@@ -1,3 +1,4 @@
 node_modules/*
 INFO_HEROKU.txt
 settings.json
+.env

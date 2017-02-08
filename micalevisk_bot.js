@@ -1,14 +1,13 @@
 // API (c) https://github.com/yagop/node-telegram-bot-api
 'use strict';
 
-var fs = require('fs');
-const settings = JSON.parse( fs.readFileSync("settings.json") )
+var dotenv = require('dotenv').config();
 var TelegramBot = require('node-telegram-bot-api');
 
 var bot = function () {
 	console.log(">>","BOT INICIADO");
 
-	const BOT_TOKEN = settings.BOT_TOKEN;
+	const BOT_TOKEN = process.env.BOT_TOKEN;
 
 	/// Create a bot that uses 'polling' to fetch new updates
 	var bot = new TelegramBot(BOT_TOKEN, { polling: true });

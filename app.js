@@ -17,16 +17,6 @@ var app = function () {
 		res.render('index.html');
 	});
 
-	/*
-
-	var app = http.createServer( function(req, res) {
-
-		res.writeHead(200, {'Content-Type': 'application/json'});
-		res.write(JSON.stringify( packageFile ))
-		res.end();
-
-	});
-*/
 	return app;
 }();
 

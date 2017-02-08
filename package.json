@@ -5,16 +5,18 @@
   "main": "start.js",
   "author": "Micael Levi",
   "license": "ISC",
-  "scripts":{
-    "start": "node start"
+  "scripts": {
+    "start": "node start.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/micalevisk/Micalevisk-TelegramBot.git"
-   },
+  },
   "dependencies": {
+    "dotenv": "^4.0.0",
     "ejs": "*",
-    "express": "3.x",
+    "express": "latest",
+    "http": "latest",
     "node-telegram-bot-api": "^0.26.0"
   },
   "homepage": "https://github.com/micalevisk/Micalevisk-TelegramBot"
