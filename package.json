@@ -2,12 +2,20 @@
   "name": "micalevisk-telegrambot",
   "version": "0.0.1",
   "description": "My simple Telegram Bot with NodeJS & Heroku (with Codeship)",
-  "main": "index.js",
+  "main": "start.js",
   "author": "Micael Levi",
   "license": "ISC",
+  "scripts":{
+    "start": "node start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/micalevisk/Micalevisk-TelegramBot.git"
+   },
   "dependencies": {
     "ejs": "*",
     "express": "3.x",
     "node-telegram-bot-api": "^0.26.0"
-  }
+  },
+  "homepage": "https://github.com/micalevisk/Micalevisk-TelegramBot"
 }

@@ -17,7 +17,7 @@ var bot = function () {
 	bot.onText(/\/echo (.+)/i, function (msg, match) {
 		/// 'msg' is the received Message from Telegram 'match' is the result of executing the regexp above on the text content of the message
 		var chatId = msg.chat.id;
-		var resp = match[1] + ", " + msg.chat.username;
+		var resp = match[1].toUpperCase() + ", " + msg.chat.username;
 
 		bot.sendMessage(chatId, resp);
 	});
