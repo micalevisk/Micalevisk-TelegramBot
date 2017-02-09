@@ -12,8 +12,11 @@
 4. [ ] listar **n** _(default=1; max=?)_ últimos _tweets_ de qualquer usuário (público)
 
 ### Packt Publishing with [auto claim](https://gist.github.com/micalevisk/1ec5363b165198d68959fe8599a1ac27#file-server-js)
-1. [ ] log de livro gratuito do dia com opção para recuperar ou não
-2. [ ] log de livro recuperado _(com sucesso)_
+5. [ ] log de livro gratuito do dia com opção para recuperar ou não
+6. [ ] log de livro recuperado _(com sucesso)_
 
 ### Youtube
-1. [ ] notificar quando um canal _(ao ativar essa opção deve-se passar o nome do canal)_ enviar um vídeo (ou torná-lo público)
+7. [ ] notificar quando um canal _(ao ativar essa opção deve-se passar o nome do canal)_ enviar um vídeo (ou torná-lo público)
+
+### Pergamum UFAM
+8. [ ] comando para renovar último livro emprestado _(mostrar resultado da renovação como retorno do bot)_
