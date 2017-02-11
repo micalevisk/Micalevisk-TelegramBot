@@ -8,6 +8,8 @@ var app = function () {
 	var ejs = require('ejs');
 
 	var micalevisk_bot = require('./micalevisk_bot'); /// auto run
+
+/*
 	var packageFile = JSON.parse( fs.readFileSync("package.json") )
 
 	var app = express();
@@ -16,7 +18,7 @@ var app = function () {
 	app.get('/', function(req, res) {
 		res.render('index.html');
 	});
-
+*/
 	return app;
 }();
 
