@@ -4,9 +4,8 @@
 var dotenv = require('dotenv').config();
 var TelegramBot = require('node-telegram-bot-api');
 
+console.log(">>","BOT INICIADO");
 var bot = function () {
-	console.log(">>","BOT INICIADO");
-
 	const BOT_TOKEN = process.env.BOT_TOKEN;
 
 	/// Create a bot that uses 'polling' to fetch new updates
@@ -18,6 +17,7 @@ var bot = function () {
 		var chatId = msg.chat.id;
 		var resp = match[1].toUpperCase() + ", " + msg.chat.username;
 
+		console.log("[RECEBEU]", msg);
 		bot.sendMessage(chatId, resp);
 	});
 
