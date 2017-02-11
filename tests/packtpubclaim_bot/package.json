@@ -1,0 +1,17 @@
+{
+  "name": "packtpubclaim_bot",
+  "version": "0.0.0",
+  "description": "grabbing a book a day and sends feedback on private Telegram chat",
+  "main": "client.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/micalevisk/Micalevisk-TelegramBot.git"
+  },
+  "author": "Micael Levi",
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "dotenv": "^1.1.0",
+    "request": "^2.79.0",
+    "scrap": "^0.1.0"
+  }
+}
