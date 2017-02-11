@@ -24,5 +24,6 @@
 8. [ ] comando para renovar último livro emprestado _(mostrar resultado da renovação como retorno do bot)_
 
 ### (Overleaf) Força-Tarefa
-9.  [ ] comando `/questao x` para ler o arquivo `main.tex` (local) e buscar (filtrar) enunciado e resposta (se tiver); _formatado como HTML/Markdown_
-10. [ ] comando `/minhasquestoes` que retorna as questões definidas para um usuário _(nick)_ ao ler um arquivo texto que contém tais informações; _formatado como HTML/Markdown_
+9.  [ ] comando `/qX` para ler o arquivo `main.tex` (local) e buscar (filtrar) enunciado da questão `X`; _formatado como HTML/Markdown_
+10. [ ] comando `/rX` para ler o arquivo `main.tex` (local) e buscar (filtrar) resposta da questão `X`; _formatado como HTML/Markdown_
+11. [ ] comando `/minhas` que retorna (como reply) as questões definidas para um usuário _(nick)_ ao ler um arquivo texto que contém tais informações; _formatado como HTML/Markdown_
