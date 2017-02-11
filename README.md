@@ -3,7 +3,7 @@
 [![Issues](https://img.shields.io/github/issues/micalevisk/Micalevisk-TelegramBot.svg?style=flat)](https://github.com/micalevisk/Micalevisk-TelegramBot/issues)
 [![Dependency Status](https://dependencyci.com/github/micalevisk/Micalevisk-TelegramBot/badge)](https://dependencyci.com/github/micalevisk/Micalevisk-TelegramBot)
 ![Codeship Status](https://app.codeship.com/projects/b84bc960-cfa0-0134-60b2-6eb4e8c3819f/status?branch=master)
-[![Heroku](http://heroku-badge.herokuapp.com/?app=micaleviskbot)](http://micaleviskbot.herokuapp.com/)
+![Heroku](http://heroku-badge.herokuapp.com/?app=micaleviskbot)
 
 # Features
 
@@ -22,3 +22,7 @@
 
 ### Pergamum UFAM
 8. [ ] comando para renovar último livro emprestado _(mostrar resultado da renovação como retorno do bot)_
+
+### (Overleaf) Força-Tarefa
+9.  [ ] comando `/questao x` para ler o arquivo `main.tex` (local) e buscar (filtrar) enunciado e resposta (se tiver); _formatado como HTML/Markdown_
+10. [ ] comando `/minhasquestoes` que retorna as questões definidas para um usuário _(nick)_ ao ler um arquivo texto que contém tais informações; _formatado como HTML/Markdown_
