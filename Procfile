@@ -1,1 +1,1 @@
-worker: node start.js
+worker: node micalevisk_bot.js
