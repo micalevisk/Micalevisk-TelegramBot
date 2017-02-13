@@ -45,14 +45,14 @@ request = request.defaults({ jar: true });
 
 // ========================= [ Internal Request ] ========================= //
 let cbPost = function(err, res, body) {
-    if (err) {
+    if(err){
         console.error('Login failed');
         return;
     }
 
     var $ = cheerio.load(body);
     var loginFailed = $(`div.error:contains('${loginError}')`);
-    if (loginFailed.length) {
+    if(loginFailed.length){
         console.error('Login failed, please check your email address and password');
         console.log('Login failed, please check your email address and password');
         return;
@@ -60,7 +60,7 @@ let cbPost = function(err, res, body) {
 
     var claimURL = URL_PACKTPUB + bookURL
     request(claimURL, function(err, res, body) {
-        if (err) {
+        if(err){
             lastclaim = null;
             console.error('Request Error');
             return;
@@ -84,7 +84,7 @@ let cbPost = function(err, res, body) {
 
 // ========================= [ External Request ] ========================= //
 let cbRequest = function(err, res, body) {
-    if (err) {
+    if(err){
         console.error('Request failed');
         return;
     }
@@ -95,7 +95,7 @@ let cbRequest = function(err, res, body) {
     currentDate = new Date().toLocaleString();
     var newFormId = $("input[type='hidden'][id^=form][value^=form]").val();
 
-    if (newFormId) loginDetails.form_build_id = newFormId;
+    if(newFormId) loginDetails.form_build_id = newFormId;
 
     request.post({
         uri: URL,
