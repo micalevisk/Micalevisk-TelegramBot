@@ -1,1 +1,1 @@
-worker: node micalevisk_bot.js
+work: node micalevisk_bot.js
