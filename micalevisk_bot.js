@@ -39,8 +39,7 @@ app.command('marco', (ctx) => {
 			// log.debug( JSON.stringify(publicacao,null,2) )
 			replymsg = [
 				`${publicacao.data.dia}/${publicacao.data.mes}`.asCode() + ` (${publicacao.data.hora})`.asItalic()
-				,publicacao.titulo.asBold()
-				,'link'.asLink(publicacao.link)
+				,publicacao.titulo.asLink(publicacao.link)
 			].join('\n')
 		}
 		else{
