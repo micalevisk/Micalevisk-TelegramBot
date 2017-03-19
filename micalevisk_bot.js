@@ -7,10 +7,21 @@ try { log.setLevel("debug"); } catch(e) {};
 const dotenv = require('dotenv').config()
 const Telegraf = require('telegraf')
 
-const app = new Telegraf(process.env.BOT_TOKEN)
+/* http://telegraf.js.org/telegram.html
+const { Telegram } = require('telegraf')
+const app = new Telegram(process.env.BOT_TOKEN)
+
+== exemplo:
+	let from_msg_id  = ctx.message.message_id
+	let from_chat_id= ctx.message.from.id
+	let to_chat_id  = from_chat_id
+	app.forwardMessage(from_chat_id, to_chat_id, from_msg_id)
+*/
+
+const bot = new Telegraf(process.env.BOT_TOKEN)
 
 /*
-app.use((ctx, next) => {
+bot.use((ctx, next) => {
   const start = new Date()
   return next().then(() => {
     const ms = new Date() - start
@@ -20,16 +31,15 @@ app.use((ctx, next) => {
 })
 */
 
-const default_opts = {  parse_mode: 'HTML', disable_notification: true, disable_web_page_preview: true }
+const default_opts = { parse_mode: 'HTML', disable_notification: true, disable_web_page_preview: true }
 
 /**
  * /marco
  * Mostra a última publicação
  * da página https://sites.google.com/site/compiladoresicompufam2017/classroom-news
  */
-app.command('marco', (ctx) => {
+bot.command('marco', (ctx) => {
 	let from_msg_id = ctx.message.message_id
-	// let from_chat_id= ctx.message.from.id
 
 	getUltimaPublicacao((erro, publicacao) => {
 		let  replymsg
@@ -47,10 +57,10 @@ app.command('marco', (ctx) => {
 			replymsg = 'erro'.asCode()
 		}
 
-		ctx.reply(replymsg, replyopts)
+		return ctx.reply(replymsg, replyopts)
 	})
 })
 
 
 
-app.startPolling()
+bot.startPolling()
