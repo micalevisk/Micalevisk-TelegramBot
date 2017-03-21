@@ -1,22 +1,15 @@
 // (C) API http://telegraf.js.org/telegram.html
+
+// ======================[ CONFIGS ] ====================== //
 require('./lib/string_methods')
 const log = require('./lib/logger')
 const getUltimaPublicacao = require('./getUltimaPublicacao')
 try { log.setLevel("debug"); } catch(e) {};
 
-const dotenv = require('dotenv').config()
-const Telegraf = require('telegraf')
-
-/* http://telegraf.js.org/telegram.html
-const { Telegram } = require('telegraf')
-const app = new Telegram(process.env.BOT_TOKEN)
-
-== exemplo:
-	let from_msg_id  = ctx.message.message_id
-	let from_chat_id= ctx.message.from.id
-	let to_chat_id  = from_chat_id
-	app.forwardMessage(from_chat_id, to_chat_id, from_msg_id)
-*/
+// ============= [ DEPENDENCIES ] ============= //
+const dotenv	= require('dotenv').config()
+const Telegraf	= require('telegraf')
+const { Extra, Markup } = require('telegraf')
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
@@ -31,7 +24,10 @@ bot.use((ctx, next) => {
 })
 */
 
-const default_opts = { parse_mode: 'HTML', disable_notification: true, disable_web_page_preview: true }
+const defaultReplyOptions = Extra.HTML().notifications(false).webPreview(false)
+
+
+// ====================== [ COMMANDS ] ====================== //
 
 /**
  * /marco
@@ -43,24 +39,43 @@ bot.command('marco', (ctx) => {
 
 	getUltimaPublicacao((erro, publicacao) => {
 		let  replymsg
-			,replyopts = Object.assign({ reply_to_message_id: from_msg_id }, default_opts)
+			,replyopts = defaultReplyOptions.inReplyTo(from_msg_id)
 
-		if(publicacao){
+		if(publicacao && typeof publicacao === 'object'){
 			// log.debug( JSON.stringify(publicacao,null,2) )
 			replymsg = [
-				`${publicacao.data.dia}/${publicacao.data.mes}`.asCode() + ` (${publicacao.data.hora})`.asItalic()
-				,publicacao.titulo.asLink(publicacao.link)
+				`${publicacao.data.dia}/${publicacao.data.mes}`.asBold() + ` (${publicacao.data.hora})`.asCode()
+				,publicacao.titulo.asLink(publicacao.link) + ' 📝'
 			].join('\n')
+
+			replyopts = Object.assign(replyopts, 
+				Markup.inlineKeyboard([
+					Markup.callbackButton('lida', '_ready')
+				]).extra()
+			)
+
+			return ctx.reply(replymsg, replyopts)
 		}
 		else{
 			log.error(erro)
-			replymsg = 'erro'.asCode()
+			replymsg = 'erro ao solicitar'.asCode()
+			return ctx.answerCallbackQuery(replymsg, replyopts)
 		}
 
-		return ctx.reply(replymsg, replyopts)
 	})
 })
 
 
 
+// ====================== [ ACTIONS ] ====================== //
+bot.action('_ready', (ctx, next) => {
+  let oldtext = ctx.update.callback_query.message.text
+  return ctx.editMessageText(oldtext.slice(0,-3))
+})
+
+
+
+
+//////////////////
 bot.startPolling()
+//////////////////
