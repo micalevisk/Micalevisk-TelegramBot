@@ -1,17 +1,31 @@
-const isValid = (e, prop, value) => e.hasOwnProperty('attribs') && e.attribs.hasOwnProperty(prop) && e.attribs[prop] === value
-const isValidTimestampChildren	= (e, i, a) => isValid(e, 'dir', 'ltr')
-const isValidUpdatedTimeChildren= (e, i, a) => isValid(e, 'class', 'updatedTime')
-
-const getLast = ($, query) => {
-	let elt = $(query)
-	return elt !== undefined ? elt[0] : null
+Object.prototype.compare = function(obj){
+	for(let k in obj)
+		if(this[k] !== obj[k]) return false
+	return true
 }
 
+function isType({ type },t){ return type === t }
+function isName({ name },n){ return name === n }
+function getAttribs({ attribs }){ return attribs }
+function hasAttribs(e, obj){
+	const attribs = getAttribs(e)
+	if(!attribs || attribs === undefined) return false
+	return attribs.compare(obj)
+}
 
-////////////////////////////////
+const hasData = (e) => { return isType(e,'text') && e.hasOwnProperty('data') }
+const strDateToObj = (strdate) => {
+	const [ dia, mes, ano, hora ] = strdate.replace(/\bde\b/g,'').split(' ').filter(e => e.trim())
+	return { dia:Number(dia), mes, ano:Number(ano), hora }
+}
+
+//////////////////
 module.exports = {
-	 isValidTimestampChildren
-	,isValidUpdatedTimeChildren
-	,getLast
+	 isType
+	,isName
+	,getAttribs
+	,hasAttribs
+	,hasData
+	,strDateToObj
 }
-////////////////////////////////
+//////////////////
