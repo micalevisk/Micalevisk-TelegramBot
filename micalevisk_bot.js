@@ -1,3 +1,10 @@
+/*********************************************************************************
+TODO
+consultas diárias (24hrs) (a partir do '/start') [setIntervalu]
+'/stop' para pausar as consultas diárias [clearInterval]
+salvar o dia da última consulta e ver se a notícia recuperada tem tempo diferente
+*********************************************************************************/
+
 // (C) API http://telegraf.js.org/telegram.html
 // ready https://github.com/telegraf/telegraf/blob/286614a6fc48e054a1ecfcc136e6e6bf3ac4e032/docs/context.md
 
