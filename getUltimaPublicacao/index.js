@@ -1,10 +1,9 @@
 const request= require('request')
 const cheerio= require('cheerio')
-const core   = require('./config').core
 const _      = require('./utils')
 
-const URL = `${core.protocol}://${core.hostname}${core.path}/${core.page}`
-let callback;
+let URL
+    ,callback;
 
 /// ================================================== ///
 const titleHandler =
@@ -63,10 +62,10 @@ function requestCallback(error, response, body){
 	return callback(null, ultimaPublicacao)
 }
 
-
-//////////////////////////////////////////////////
-module.exports = function getUltimaPublicacao(cb){
+///////////////////////////////////////////////////////
+module.exports = function getUltimaPublicacao(url, cb){
+	URL = url
 	callback = cb
 	request(URL, requestCallback)
 }
-//////////////////////////////////////////////////
+///////////////////////////////////////////////////////
