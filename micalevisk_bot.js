@@ -6,17 +6,22 @@ salvar o dia da última consulta e ver se a notícia recuperada tem tempo difere
 *********************************************************************************/
 
 // (C) API http://telegraf.js.org/telegram.html
-// ready https://github.com/telegraf/telegraf/blob/286614a6fc48e054a1ecfcc136e6e6bf3ac4e032/docs/context.md
+// read https://github.com/telegraf/telegraf/blob/286614a6fc48e054a1ecfcc136e6e6bf3ac4e032/docs/context.md
 
 // ======================[ CONFIGS ] ====================== //
 require('./lib/string_methods')
-const log = require('./lib/logger')
+const config = require('./getUltimaPublicacao/config')
 const getUltimaPublicacao = require('./getUltimaPublicacao')
+const log = require('./lib/logger')
+
 try { log.setLevel("debug"); } catch(e) {};
 
+const URL_NOTICIAS   = config.pageNoticias
+const URL_EXERCICIOS = config.pageExercicios
+
 // ============= [ DEPENDENCIES ] ============= //
-const dotenv	= require('dotenv').config()
-const Telegraf	= require('telegraf')
+const dotenv   = require('dotenv').config()
+const Telegraf = require('telegraf')
 const { Extra, Markup } = require('telegraf')
 
 const bot = new Telegraf(process.env.BOT_TOKEN)
@@ -43,44 +48,52 @@ const defaultReplyOptions = Extra.HTML().notifications(false).webPreview(false)
  */
 bot.hears(/^\/start$/, (ctx) => {
 // bot.command('start', (ctx) => {
-	let msg = ctx.message
-	let chat = msg.chat
+	const msg = ctx.message
+	const chat = msg.chat
 	log.info(`bot iniciado no chat ${chat.id} (${chat.username})`)
 })
 
 /**
  * /marco
- * Mostra a última publicação
- * da página https://sites.google.com/site/compiladoresicompufam2017/classroom-news
+ * Mostra a última publicação de "Anúncios para turma" e "Exercícios"
+ * páginas
+ * https://sites.google.com/site/compiladoresicompufam2017/classroom-news
+ * https://sites.google.com/site/compiladoresicompufam2017/assignments
  */
-bot.hears(/^\/marco$/, (ctx) => {
-// bot.command('marco', (ctx) => {
-	let from_msg_id = ctx.message.message_id
+bot.command('marco', (ctx) => {
+// bot.hears(/^\/marco$/, (ctx) => {
+	const from_msg_id = ctx.message.message_id
 
-	getUltimaPublicacao((erro, publicacao) => {
-		let  replymsg
-			,replyopts = defaultReplyOptions.inReplyTo(from_msg_id)
+	const callGetUltimaPublicacao = (url) => {
+		getUltimaPublicacao(url, (erro, publicacao) => {
+			let  replymsg
+				,replyopts = defaultReplyOptions.inReplyTo(from_msg_id)
 
-		if(publicacao && typeof publicacao === 'object'){
-			// log.debug( JSON.stringify(publicacao,null,2) )
-			replymsg = [
-				`${publicacao.data.dia}/${publicacao.data.mes}`.asBold() + ` (${publicacao.data.hora})`.asCode()
-				,publicacao.titulo.asLink(publicacao.link) + ' 📝'
-			].join('\n')
+			if(publicacao && typeof publicacao === 'object'){
+				// log.debug( JSON.stringify(publicacao,null,2) )
 
-			replyopts = Object.assign(replyopts, 
-				Markup.inlineKeyboard([
-					Markup.callbackButton('LIDO 👀', '_msglida')
-				]).extra()
-			)
-		}
-		else{
-			log.error(erro)
-			replymsg = 'erro ao solicitar'.asCode()
-		}
+				replymsg = [
+					`${publicacao.data.dia}/${publicacao.data.mes}`.asBold() + ` (${publicacao.data.hora})`.asCode()
+					,publicacao.titulo.asLink(publicacao.link) + ' 📝'
+				].join('\n')
 
-		return ctx.reply(replymsg, replyopts)
-	})
+				replyopts = Object.assign(replyopts, 
+					Markup.inlineKeyboard([
+						Markup.callbackButton('LIDO 👀', '_msglida')
+					]).extra()
+				)
+			}
+			else{
+				log.error(erro)
+				replymsg = 'erro ao solicitar'.asCode()
+			}
+
+			return ctx.reply(replymsg, replyopts)
+		})
+	}
+
+	callGetUltimaPublicacao(URL_NOTICIAS)
+	callGetUltimaPublicacao(URL_EXERCICIOS)
 })
 
 
