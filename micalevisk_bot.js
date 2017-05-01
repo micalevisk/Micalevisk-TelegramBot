@@ -56,7 +56,7 @@ bot.command('start', (ctx) => {
 	intervalID = setInterval(function(){
 		let replyopts = defaultReplyOptions.inReplyTo(from_msg_id)
 		ctx.reply('up^^', replyopts)
-	}, 3600000)//§
+	}, 3600000 * 24)//§
 })
 
 /**
