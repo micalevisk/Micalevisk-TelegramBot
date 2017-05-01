@@ -40,17 +40,23 @@ bot.use((ctx, next) => {
 
 const defaultReplyOptions = Extra.HTML().notifications(false).webPreview(false)
 
-
+let intervalID = null;//§
 // ====================== [ COMMANDS ] ====================== //
 
 /**
  * /start
  */
-bot.hears(/^\/start$/, (ctx) => {
-// bot.command('start', (ctx) => {
+bot.command('start', (ctx) => {
 	const msg = ctx.message
 	const chat = msg.chat
 	log.info(`bot iniciado no chat ${chat.id} (${chat.username})`)
+
+
+	const from_msg_id = msg.message_id
+	intervalID = setInterval(function(){
+		let replyopts = defaultReplyOptions.inReplyTo(from_msg_id)
+		ctx.reply('up^^', replyopts)
+	}, 3600000)//§
 })
 
 /**
