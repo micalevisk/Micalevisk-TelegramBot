@@ -54,8 +54,7 @@ bot.command('start', (ctx) => {
 
 	const from_msg_id = msg.message_id
 	intervalID = setInterval(function(){
-		let replyopts = defaultReplyOptions.inReplyTo(from_msg_id)
-		ctx.reply('up^^', replyopts)
+		ctx.telegram.sendMessage(chat.id, 'up ^^', defaultReplyOptions)
 	}, 3600000 * 24)//§
 })
 
